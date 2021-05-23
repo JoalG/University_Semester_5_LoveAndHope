@@ -3,6 +3,7 @@ const express = require('express');
 const { remove } = require('../models/User');
 const router = express.Router();
 const User = require('../models/User')
+const crypto = require('crypto')
 
 
 
@@ -59,6 +60,29 @@ router.get('/:username', async(req, res) => {
 
 
 
+
+//DELETE de un user
+//E: username
+//S: User 
+router.delete('/', async(req, res) => {
+    try {
+        const findUser = await User.findOne({ username: req.body.username });
+        if (findUser != null) {
+            const removeUser = await User.findOneAndRemove({ _id: findUser._id });
+            res.json(removeUser);
+        } else {
+            res.status(401).send('Error. Este username no está en la base de datos');
+        }
+
+    } catch (error) {
+        res.status(401).send('Ha ocurrido un error.');
+    }
+
+});
+
+
+
+
 //POST (Insert)
 //E: User
 //S: User sin password
@@ -67,10 +91,15 @@ router.post('/', async(req, res) => {
     try {
         const findUser = await User.findOne({ username: req.body.username });
         if (findUser == null) {
+
+            let salt = crypto.randomBytes(16).toString('hex');
+            let hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 64, 'sha512').toString('hex');
+
             const user = new User({
                 username: req.body.username,
                 password: req.body.password,
-                type: req.body.type
+                salt: salt,
+                hash: hash
 
             });
 
