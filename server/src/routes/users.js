@@ -99,13 +99,18 @@ router.post('/', async(req, res) => {
                 username: req.body.username,
                 password: req.body.password,
                 salt: salt,
-                hash: hash
+                hash: hash,
+                name: req.body.name,
+                e_mail: req.body.e_mail,
+                phone_number: req.body.phone_number
 
             });
 
+            console.log(user);
+
             await user.save(function(err) {
                 if (err) {
-                    res.status(401).send('Ha ocurrido un error.');
+                    res.status(401).send('Ha ocurrido un error 1.');
                 } else {
                     saveUser = user.toObject();
                     delete saveUser.password;
@@ -114,11 +119,11 @@ router.post('/', async(req, res) => {
             }); //metodo de mongoose para guardar 
 
         } else {
-            res.status(401).send('Ha ocurrido un error.');
+            res.status(401).send('Ha ocurrido un error 2.');
         }
 
     } catch {
-        res.status(401).send('Ha ocurrido un error.');
+        res.status(401).send('Ha ocurrido un error 3.');
     }
 
 

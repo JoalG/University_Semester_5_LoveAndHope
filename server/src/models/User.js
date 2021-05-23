@@ -13,6 +13,18 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String,
+        required: true
+    },
+    e_mail: {
+        type: String,
+        required: true
+    },
+    phone_number: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now
