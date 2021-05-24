@@ -17,12 +17,17 @@ app.use(express.json());
 
 // imports ROUTES
 
-//const userRoute = require('./routes/users');
+const userRoute = require('./routes/users');
 const formRoute = require('./routes/forms');
+const orderRoute = require('./routes/orders');
+const productRoute = require('./routes/products');
+const trayRoute = require('./routes/trays');
 
-//app.use('/Users', userRoute);
+app.use('/Users', userRoute);
 app.use('/Forms', formRoute);
-
+app.use('/Orders', orderRoute);
+app.use('/Products', productRoute);
+app.use('/Trays', trayRoute);
 
 mongoose.connect(
     process.env.DB_CONNECTION_LAH, {

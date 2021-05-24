@@ -2,7 +2,7 @@ const { response } = require('express');
 const express = require('express');
 const { remove } = require('../models/Tray');
 const router = express.Router();
-const Product = require('../models/Tray');
+const Tray = require('../models/Tray');
 const crypto = require('crypto');
 
 
@@ -97,6 +97,7 @@ router.post('/', async(req, res) => {
             products: req.body.products
         });
 
+
         console.log(tray);
 
         await tray.save(function(err) {
@@ -113,3 +114,5 @@ router.post('/', async(req, res) => {
     }
 
 });
+
+module.exports = router;

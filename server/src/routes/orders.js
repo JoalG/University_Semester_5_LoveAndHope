@@ -3,7 +3,6 @@ const express = require('express');
 const { remove } = require('../models/Order');
 const router = express.Router();
 const Order = require('../models/Order')
-const crypto = require('crypto');
 
 
 
@@ -117,3 +116,5 @@ router.post('/', async(req, res) => {
     }
 
 });
+
+module.exports = router;

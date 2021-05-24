@@ -3,7 +3,6 @@ const express = require('express');
 const { remove } = require('../models/Form');
 const router = express.Router();
 const Form = require('../models/Form')
-const crypto = require('crypto');
 
 
 
@@ -95,9 +94,9 @@ router.post('/', async(req, res) => {
             color: req.body.color,
             age: req.body.age,
             tv_show: req.body.tv_show,
-            sports: req.body.sports,
-            movies: req.body.movies,
-            music: req.body.music,
+            sport: req.body.sport,
+            movie: req.body.movie,
+            song: req.body.song,
             profession: req.body.profession
         });
 

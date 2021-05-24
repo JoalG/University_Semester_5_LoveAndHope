@@ -96,7 +96,8 @@ router.post('/', async(req, res) => {
             detail: req.body.detail,
             amount: req.body.amount,
             price: req.body.price,
-            img: req.body.img,
+            code: req.body.code,
+            img: req.body.img
         });
 
         console.log(product);
@@ -115,3 +116,5 @@ router.post('/', async(req, res) => {
     }
 
 });
+
+module.exports = router;

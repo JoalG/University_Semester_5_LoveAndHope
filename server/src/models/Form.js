@@ -10,22 +10,22 @@ const FormSquema = mongoose.Schema({
         required: true
     },
     age: {
-        type: String,
+        type: Number,
         required: true
     },
     tv_show: {
         type: String,
         required: true
     },
-    sports: {
+    sport: {
         type: String,
         required: true
     },
-    movies: {
+    movie: {
         type: String,
         required: true
     },
-    music: {
+    song: {
         type: String,
         required: true
     },

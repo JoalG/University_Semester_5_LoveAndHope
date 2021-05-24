@@ -11,7 +11,7 @@ const TraySchema = mongoose.Schema({
         required: true
     },
     price: {
-        type: number,
+        type: String,
         required: true
     },
     img: {
