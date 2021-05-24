@@ -1,27 +1,35 @@
 const mongoose = require('mongoose');
 
-const UserSchema = mongoose.Schema({
+const OrderSchema = mongoose.Schema({
     username: {
         type: String,
         required: true
     },
-    salt: {
+    formId: {
         type: String,
         required: true
     },
-    hash: {
+    selected_products: {
+        type: [String],
+        required: true
+    },
+    address: {
         type: String,
         required: true
     },
-    name: {
-        type: String,
-        required: true
-    },
-    e_mail: {
+    date: {
         type: String,
         required: true
     },
     phone_number: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: String,
+        required: true
+    },
+    state: {
         type: String,
         required: true
     },
@@ -31,4 +39,4 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Order', OrderSchema);

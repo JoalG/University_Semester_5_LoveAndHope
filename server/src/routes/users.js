@@ -3,7 +3,8 @@ const express = require('express');
 const { remove } = require('../models/User');
 const router = express.Router();
 const User = require('../models/User')
-const crypto = require('crypto')
+const crypto = require('crypto');
+
 
 
 
@@ -80,6 +81,31 @@ router.delete('/', async(req, res) => {
 
 });
 
+
+
+
+/* //PATCH (Update)
+//E: {username,user}
+//S: El user actualizado sin password
+router.patch('/', async(req, res) => {
+    try {
+        findUser = await User.findOne({ username: req.body.username });
+        findNewUser = await User.findOne({ username: req.body.user.username });
+
+        if (findUser != null && ((req.body.username == req.body.user.username) || (findNewUser == null))) {
+            const updatedUser = await User.update({ _id: findUser._id }, req.body.user);
+            findUser = await User.findOne({ username: req.body.user.username }, { password: 0 });
+
+            res.json(findUser);
+        } else {
+            res.status(401).send('Error. Este username no está en la base de datos');
+        }
+
+    } catch (error) {
+        res.status(401).send('Ha ocurrido un error.');
+    }
+
+}); */
 
 
 

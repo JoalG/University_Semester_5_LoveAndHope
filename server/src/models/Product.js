@@ -1,27 +1,35 @@
 const mongoose = require('mongoose');
 
-const UserSchema = mongoose.Schema({
-    username: {
-        type: String,
-        required: true
-    },
-    salt: {
-        type: String,
-        required: true
-    },
-    hash: {
-        type: String,
-        required: true
-    },
+const ProductSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
     },
-    e_mail: {
+    supplier: {
         type: String,
         required: true
     },
-    phone_number: {
+    type: {
+        type: String,
+        required: true
+    },
+    detail: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: String,
+        required: true
+    },
+    code: {
+        type: String,
+        required: true
+    },
+    img: {
         type: String,
         required: true
     },
@@ -31,4 +39,4 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Product', ProductSchema);

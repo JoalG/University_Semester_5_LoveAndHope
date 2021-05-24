@@ -16,16 +16,16 @@ app.use(express.json());
 
 
 // imports ROUTES
-//const postRoute = require ('./routes/posts');
-const userRoute = require('./routes/users');
-//const schemaRoute = require('./routes/schemas');
 
-//app.use('/posts', postRoute);
-app.use('/Users', userRoute);
-//app.use('/Schemas', schemaRoute);
+//const userRoute = require('./routes/users');
+const formRoute = require('./routes/forms');
+
+//app.use('/Users', userRoute);
+app.use('/Forms', formRoute);
+
 
 mongoose.connect(
-    process.env.DB_CONNECTION_U, {
+    process.env.DB_CONNECTION_LAH, {
         useUnifiedTopology: true,
         useNewUrlParser: true
     },

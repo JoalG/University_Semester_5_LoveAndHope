@@ -1,27 +1,35 @@
 const mongoose = require('mongoose');
 
-const UserSchema = mongoose.Schema({
-    username: {
+const FormSquema = mongoose.Schema({
+    receiver_name: {
         type: String,
         required: true
     },
-    salt: {
+    color: {
         type: String,
         required: true
     },
-    hash: {
+    age: {
         type: String,
         required: true
     },
-    name: {
+    tv_show: {
         type: String,
         required: true
     },
-    e_mail: {
+    sports: {
         type: String,
         required: true
     },
-    phone_number: {
+    movies: {
+        type: String,
+        required: true
+    },
+    music: {
+        type: String,
+        required: true
+    },
+    profession: {
         type: String,
         required: true
     },
@@ -31,4 +39,4 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Form', FormSquema);

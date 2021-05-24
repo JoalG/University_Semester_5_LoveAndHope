@@ -1,28 +1,25 @@
 const mongoose = require('mongoose');
 
-const UserSchema = mongoose.Schema({
-    username: {
-        type: String,
-        required: true
-    },
-    salt: {
-        type: String,
-        required: true
-    },
-    hash: {
-        type: String,
-        required: true
-    },
+const TraySchema = mongoose.Schema({
+
     name: {
         type: String,
         required: true
     },
-    e_mail: {
+    occasion: {
         type: String,
         required: true
     },
-    phone_number: {
+    price: {
+        type: number,
+        required: true
+    },
+    img: {
         type: String,
+        required: true
+    },
+    products: {
+        type: [String],
         required: true
     },
     createdDate: {
@@ -31,4 +28,4 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Tray', TraySchema);
