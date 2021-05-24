@@ -17,16 +17,9 @@ app.use(express.json());
 
 // imports ROUTES
 
-const formRoute = require('./routes/forms');
-const orderRoute = require('./routes/orders');
-const productRoute = require('./routes/products');
-const trayRoute = require('./routes/trays');
+const userRoute = require('./routes/users');
 
-
-app.use('/Forms', formRoute);
-app.use('/Orders', orderRoute);
-app.use('/Products', productRoute);
-app.use('/Trays', trayRoute);
+app.use('/Users', userRoute);
 
 mongoose.connect(
     process.env.DB_CONNECTION, {
@@ -34,9 +27,9 @@ mongoose.connect(
         useNewUrlParser: true
     },
     () => {
-        console.log('connected to LoveAndHope DB!!!');
+        console.log('connected to Users DB!!!');
     }
 );
 
 // server listing in  port 3000
-app.listen(3000);
+app.listen(5000);

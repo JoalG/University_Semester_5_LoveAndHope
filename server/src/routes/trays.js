@@ -9,8 +9,7 @@ const crypto = require('crypto');
 
 
 //GET 
-//E: 
-//S: Todos los form
+//S: Todos los trays
 router.get('/', async(req, res) => {
     try {
         const tray = await Tray.find();
