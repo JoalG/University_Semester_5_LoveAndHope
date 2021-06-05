@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tray-card',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tray-card.component.css']
 })
 export class TrayCardComponent implements OnInit {
+
+  @Input() tray : any = {};
 
   constructor() { }
 

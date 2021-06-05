@@ -1,18 +1,102 @@
-<body>
-    <div class="container-fluid mt-2">
-        <div class="row border">
-            <div class="col-md-8 border">
-                <div class="row border">
-                    Foto
+<div class="container-fluid p-4">
+    <div class="row border">
+        <div class="col-md-8 border">
+            <div class="row border mb-4">
+                <img src="assets/images/home_banner.jpg" class="img-responsive center-block d-block mx-auto rounded w-100" alt="Sample Image">
+            </div>
+
+            <div class="row border">
+                <div class="col-12 mb-4">
+                    <h3 class="myTitle text-turquoise-dark">Conoce nuestros productos</h3>
                 </div>
-                <div class="row border">
-                    Recomendados
+                <div class="col-12">
+                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+        
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row">
+        
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <app-tray-card [tray] ="tray_example"></app-tray-card>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <app-tray-card [tray] ="tray_example"></app-tray-card>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <app-tray-card [tray] ="tray_example"></app-tray-card>
+                                    </div>
+        
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+        
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <app-tray-card [tray] ="tray_example"></app-tray-card>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <app-tray-card [tray] ="tray_example"></app-tray-card>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <app-tray-card [tray] ="tray_example"></app-tray-card>
+                                    </div>
+        
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+        
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <app-tray-card [tray] ="tray_example"></app-tray-card>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <app-tray-card [tray] ="tray_example"></app-tray-card>
+
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <app-tray-card [tray] ="tray_example"></app-tray-card>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                        <i class="fa fa-arrow-left"></i>
+                    </a>
+                    <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
-            <div class="col-md-4 border">
-                Cuenta de usuario
+        </div>
+        <div class="col-md-4 border d-flex justify-content-center">
+            <div class="card user-card">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Special title treatment</h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                  <form>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Inciar Sesión</button>
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                  </form>
+
+                </div>
             </div>
         </div>
     </div>
-
-</body>
+</div>

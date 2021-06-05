@@ -1,0 +1,28 @@
+.banner-img{
+    width: auto;
+}
+
+.btn-primary {
+    width: 225px;
+    background-color: white;
+    color: #006B7A;
+    font-size: 25px;
+    font-weight: bold;
+    border-color: white;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #003B49;
+    border-color: #003B49; /*set the color you want here*/
+}
+
+.myTitle{
+    font-size: 45px;
+}
+
+.user-card{
+    height: 80%;
+    width: 90%;
+    background-color: #006B7A;
+    border-radius: 15px;
+}
