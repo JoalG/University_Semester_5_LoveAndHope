@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/* Love and Hope Colors */
+
+.text-turquoise-dark {
+    color: #003B49;
+}
+
+.text-turquoise {
+    color: #006B7A;
+}
+
+.text-white {
+    color: #FFFFFF;
+}
+
+.text-black {
+    color: #000000;
+}
