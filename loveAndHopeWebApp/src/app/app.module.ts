@@ -15,6 +15,7 @@ import { InfoFormComponent } from './components/info-form/info-form.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ShoppingHistoryComponent } from './components/shopping-history/shopping-history.component';
+import { TrayCardsCarouselComponent } from './components/shared/tray-cards-carousel/tray-cards-carousel.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ShoppingHistoryComponent } from './components/shopping-history/shopping
     InfoFormComponent,
     ShoppingCartComponent,
     SignUpComponent,
-    ShoppingHistoryComponent
+    ShoppingHistoryComponent,
+    TrayCardsCarouselComponent
   ],
   imports: [
     BrowserModule,

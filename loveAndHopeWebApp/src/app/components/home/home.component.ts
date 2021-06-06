@@ -7,11 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  tray_example = {
-    "img_url" : "soy el link de imagen",
-    "tray_url" : "soy el url de tray"
-  }
-
   constructor() { }
 
   ngOnInit(): void {
