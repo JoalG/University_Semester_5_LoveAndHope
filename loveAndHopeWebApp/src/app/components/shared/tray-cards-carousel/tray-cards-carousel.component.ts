@@ -32,6 +32,14 @@ export class TrayCardsCarouselComponent implements OnInit {
     {
       "img_url" : "soy el link de imagen",
       "tray_url" : "soy el url de tray"
+    },
+    {
+      "img_url" : "soy el link de imagen",
+      "tray_url" : "soy el url de tray"
+    },
+    {
+      "img_url" : "soy el link de imagen",
+      "tray_url" : "soy el url de tray"
     }
   ];
 
