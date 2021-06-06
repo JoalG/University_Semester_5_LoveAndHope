@@ -18,3 +18,19 @@
 .text-black {
     color: #000000;
 }
+
+.bg-turquoise-dark {
+    background-color: #003B49;
+}
+
+.bg-turquoise {
+    background-color: #006B7A;
+}
+
+.bg-white {
+    background-color: #FFFFFF;
+}
+
+.bg-black {
+    background-color: #000000;
+}
