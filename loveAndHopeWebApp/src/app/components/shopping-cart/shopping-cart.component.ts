@@ -7,12 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  items = {
+  items = [{
+    order_number:123342,
+    for:"El pepe",
+    budget: 250000,
+    date: "15/12/2021"
+  },{
+    order_number:123342,
+    for:"El pepe",
+    budget: 250000,
+    date: "15/12/2021"
+  },{
+    order_number:123342,
+    for:"El pepe",
+    budget: 250000,
+    date: "15/12/2021"
+  },{
     order_number:123342,
     for:"El pepe",
     budget: 250000,
     date: "15/12/2021"
   }
+];
 
   constructor() { }
 

@@ -15,3 +15,26 @@
     border-color: #003B49;
     /*set the color you want here*/
 }
+
+.btn-secondary {
+    background-color: #003B49;
+    color: white;
+    font-weight: bold;
+    border-color: #003B49;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary.active,
+.open>.dropdown-toggle.btn-secondary {
+    color: white;
+    background-color: #006B7A;
+    border-color: #006B7A;
+    /*set the color you want here*/
+}
+
+.car-items {
+    height: 550px;
+    overflow-y: scroll;
+}
