@@ -4,6 +4,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { TraysComponent } from './components/trays/trays.component';
 import { InfoComponent } from "./components/info/info.component";
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:'trays', component:TraysComponent},
   {path:'info', component:InfoComponent},
   {path:'sign-up', component:SignUpComponent},
+  {path:'shopping-cart', component:ShoppingCartComponent},
 
   {path:'**',pathMatch:'full',redirectTo:'home'}
 
