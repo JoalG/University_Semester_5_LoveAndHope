@@ -34,3 +34,7 @@
 .bg-black {
     background-color: #000000;
 }
+
+.rounded {
+    border-radius: 15px;
+}
