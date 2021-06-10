@@ -16,6 +16,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ShoppingHistoryComponent } from './components/shopping-history/shopping-history.component';
 import { TrayCardsCarouselComponent } from './components/shared/tray-cards-carousel/tray-cards-carousel.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TrayCardsCarouselComponent } from './components/shared/tray-cards-carou
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

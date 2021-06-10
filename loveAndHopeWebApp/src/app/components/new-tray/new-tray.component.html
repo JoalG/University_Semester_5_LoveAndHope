@@ -1,1 +1,123 @@
-<p>new-tray works!</p>
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-12 col-lg-4">
+            <div class="row justify-content-center">
+                <h1 class="text-turquoise-dark">Personaliza tu bandeja</h1>
+            </div>
+            <div class="row justify-content-center my-5">
+                <i class="fas fa-10x fa-edit text-turquoise-dark"></i>
+            </div>
+            <div class="row justify-content-center rounded bg-turquoise">
+
+                <h3 class="text-center text-white my-5 mx-3">
+                    Porfavor complete el siguiente formulario de información de la orden, 
+                    en base al cual en love&hope diseñaremos una badeja unica para la ocasión.
+                    <br>
+                    <i class="fas fa-3x fa-heart mt-3"></i>
+                </h3>
+
+            </div>
+        </div>
+        <div class="col-12 col-lg-8">
+            <div class="card user-card text-white bg-turquoise">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="mt-3 mb-5 text-center" *ngIf="currentStep === 0">Información de a quien va dirigida la bandeja</h1>
+                            <h1 class="mt-3 mb-5 text-center" *ngIf="currentStep === 1">Selecciona los productos de tu agrado</h1>
+                            <h1 class="mt-3 mb-5 text-center" *ngIf="currentStep === 2">Información de la orden</h1>
+                            <form [formGroup]="receiverForm" *ngIf="currentStep === 0">
+                                <div class="form-group px-5 customOverflow">
+                                    <label for="receiver_name" class="mt-3"><h4>Nombre</h4></label>
+                                    <input id="receiver_name" type="text" class="form-control" formControlName="receiver_name">
+                                   
+                                    <label for="color" class="mt-3"><h4>Colores favoritos</h4></label>
+                                    <input id="color" type="text" class="form-control" formControlName="color">
+                                    
+                                    <label for="age" class="mt-3"><h4>Edad</h4></label>
+                                    <input id="age" type="number" class="form-control" formControlName="age">
+                                    
+                                    <label for="tv_show" class="mt-3"><h4>Series favoritas</h4></label>
+                                    <input id="tv_show" type="text" class="form-control" formControlName="tv_show">
+                                    
+                                    <label for="sport" class="mt-3"><h4>Deportes favoritos</h4></label>
+                                    <input id="sport" type="text" class="form-control" formControlName="sport">
+
+                                    <label for="movie" class="mt-3"><h4>Películas favoritas</h4></label>
+                                    <input id="movie" type="text" class="form-control" formControlName="movie">
+                                    
+                                    <label for="song" class="mt-3"><h4>Canciones favoritas</h4></label>
+                                    <input id="song" type="text" class="form-control" formControlName="song">
+
+                                    <label for="profession" class="mt-3"><h4>Profesión</h4></label>
+                                    <input id="profession" type="text" class="form-control" formControlName="profession">
+                                </div>
+                            </form>
+                            <form [formGroup]="orderForm" *ngIf="currentStep !== 0">
+                                <div class="form-group px-5 customOverflow" *ngIf="currentStep === 1">
+                                    <div class="row justify-content-md-center mt-4" *ngFor="let group of getGroups(selected_productsArray.controls, productsNumOfColumns); let i = index">
+                                        <div class="col col-md-4 justify-content-md-center" *ngFor="let control of group; let j = index">
+                                            <div>
+                                                <input 
+                                                type="checkbox" 
+                                                (change)="getSelectedSelected_Products()"
+                                                [formControl]="control" 
+                                                id="myCheckbox{{(i*productsNumOfColumns)+j}}"/>
+                                                <label for="myCheckbox{{(i*productsNumOfColumns)+j}}"><img src="{{products[(i*productsNumOfColumns)+j].img}}" /></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group px-5" *ngIf="currentStep === 2">
+                                    <label for="address" class="mt-3"><h4>Dirección de entrega</h4></label>
+                                    <input id="address" type="text" class="form-control" formControlName="address">
+                                    
+                                    <label for="date" class="mt-3"><h4>Fecha de entrega</h4></label>
+                                    <input id="date" type="date" class="form-control" formControlName="date">
+                                    
+                                    <label for="phone_number" class="mt-3"><h4>Número de teléfono</h4></label>
+                                    <input id="phone_number" type="tel" class="form-control" formControlName="phone_number">
+                                    
+                                    <label for="price" class="mt-3"><h4>Presupuesto propuesto</h4></label>
+                                    <input id="price" type="number" class="form-control" formControlName="price">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-12 my-3 justify-content-center text-center">
+                            <button 
+                                type="button" 
+                                class="btn btn-primary mx-3" 
+                                (click)="previousStep()"
+                                *ngIf="currentStep > 0"> 
+                                    <h5>Anterior</h5> 
+                            </button>
+                            <button 
+                                type="button" 
+                                class="btn btn-primary mx-3" 
+                                (click)="nextStep();" 
+                                *ngIf="currentStep < 2">
+                                    <h5>Siguiente</h5> 
+                            </button>
+                            <button 
+                                type="button" 
+                                class="btn btn-primary mx-3" 
+                                (click)="nextStep(); saveOrderDetails()" 
+                                *ngIf="currentStep === 2">
+                                    <h5>Agregar al carrito</h5> 
+                            </button>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+Receiver: {{receiverForm.value | json }}
+<br>
+Order: {{ orderForm.value | json}}
+<br>
+Products Values: {{ selectedSelected_Products | json}}
+
+
+

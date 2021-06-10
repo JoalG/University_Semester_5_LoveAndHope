@@ -1,0 +1,92 @@
+ul {
+    list-style-type: none;
+  }
+  
+  li {
+    display: inline-block;
+  }
+  
+  input[type="checkbox"][id^="myCheckbox"] {
+    display: none;
+  }
+  
+  label[for^="myCheckbox"] {
+    border: 1px solid #fff;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    width: 175px;
+    height: 175px;
+    margin: auto;
+    border-radius: 20px;
+  }
+  
+  label:before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 10%;
+    border: 1px solid black;
+    position: absolute;
+    top: 143px;
+    left: 143px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+  }
+  
+  label img {
+    height: 175px;
+    width: 175px;
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+    border-radius: 20px;
+  }
+  
+  :checked + label {
+    border-color: #ddd;
+  }
+  
+  :checked + label:before {
+    content: "✓";
+    background-color: black;
+    transform: scale(1.5);
+    z-index: +1;
+    border-radius: 5px;
+  }
+  
+  :checked + label img {
+    transform: scale(0.9);
+    /* box-shadow: 0 0 5px #333; */
+    z-index: -1;
+  }
+
+.customOverflow{
+  height: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.btn-primary {
+  width: 200px;
+  background-color: white;
+  color: #006B7A;
+  font-size: 25px;
+  font-weight: bold;
+  border-color: white;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open>.dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #003B49;
+  border-color: #003B49;
+  /*set the color you want here*/
+}
