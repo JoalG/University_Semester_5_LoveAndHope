@@ -12,7 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignUpComponent implements OnInit {
 
 
-  user: User = {username:"JoquinYD",password :"1234",name:"Joaquin",e_mail:"Joaquin Jimenez",phone_number:"87356256"};
 
   constructor(private userService: UserService, private fb: FormBuilder) { }
 
@@ -21,16 +20,16 @@ export class SignUpComponent implements OnInit {
     password: ['', [Validators.required]],
     confirmPassword: ['', [Validators.required]],
     name: ['', [Validators.required]],
-    email: ['', [Validators.required], Validators.email],
+    e_mail: ['', [Validators.required, Validators.email]],
     phone_number: ['', [Validators.required]]
   })
 
 
   ngOnInit(): void {
-    this.postUser()
+ 
   }
 
-  getUsers(){
+/*   getUsers(){
     this.userService.getUsers().subscribe(
       res => {
         this.user = res[0];
@@ -38,11 +37,22 @@ export class SignUpComponent implements OnInit {
       },
       err => console.log(err)
       );
-  }
+  } */
 
 
   postUser(){
-    this.userService.postUser(this.user).subscribe(
+
+    let user: User = {
+      username: this.signUpForm.value.username,
+      password :this.signUpForm.value.password,
+      name: this.signUpForm.value.name,
+      e_mail: this.signUpForm.value.e_mail,
+      phone_number: this.signUpForm.value.phone_number
+    };
+
+    console.log(user);
+
+    this.userService.postUser(user).subscribe(
       res => console.log(res),
       err => console.log(err)
     );
