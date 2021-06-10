@@ -17,6 +17,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ShoppingHistoryComponent } from './components/shopping-history/shopping-history.component';
 import { TrayCardsCarouselComponent } from './components/shared/tray-cards-carousel/tray-cards-carousel.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
