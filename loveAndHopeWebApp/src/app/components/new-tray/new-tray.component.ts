@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Product } from 'src/app/models/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-new-tray',
@@ -11,21 +13,10 @@ export class NewTrayComponent implements OnInit {
   public currentStep = 0;
   private maxSteps = 2;
   public productsNumOfColumns = 2;
-  public selectedSelected_Products: string[] = [];
+  public selectedSelected_Products: String[] = [];
 
-  products = [{img: "assets/images/home_banner.jpg", code: "#13123", name: "cocacola"},
-              {img: "assets/images/card_example.jpg", code: "#55123", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#1553", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#178683", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#6354235", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#13423", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#13423", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#13123", name: "cocacola"},
-              {img: "assets/images/card_example.jpg", code: "#55123", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#1553", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#178683", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#6354235", name: "cocacola"},
-              {img: "assets/images/home_banner.jpg", code: "#13423", name: "cocacola"}]
+  @Input() products: Product[] = [];
+  orderForm!: FormGroup;
 
   receiverForm: FormGroup = this.fb.group({
       receiver_name: ['', [Validators.required]],
@@ -38,19 +29,12 @@ export class NewTrayComponent implements OnInit {
       profession: ['', [Validators.required]],
   });
 
-  orderForm: FormGroup = this.fb.group({
-    selected_products: this.addSelected_ProductsControls(),
-    address: ['', [Validators.required]],
-    date: ['', [Validators.required]],
-    phone_number: ['', [Validators.required]],
-    price: ['', [Validators.required]],
-    state: ['En proceso'],
-  });
+  
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private productService:ProductService) { }
 
   ngOnInit(): void {
-
+    this.getProducts();
   }
 
   addSelected_ProductsControls() {
@@ -97,8 +81,25 @@ export class NewTrayComponent implements OnInit {
     this.selectedSelected_Products = [];
     this.selected_productsArray.controls.forEach((control, i) => {
       if(control.value){
-        this.selectedSelected_Products.push(this.products[i].code)
+        this.selectedSelected_Products.push(this.products[i].code.toString())
       }
     });
+  }
+
+  getProducts(){
+    this.productService.getProducts().subscribe(
+      res => {
+        this.products=res;
+        this.orderForm = this.fb.group({
+          selected_products: this.addSelected_ProductsControls(),
+          address: ['', [Validators.required]],
+          date: ['', [Validators.required]],
+          phone_number: ['', [Validators.required]],
+          price: ['', [Validators.required]],
+          state: ['En proceso'],
+        });
+      },
+      err => console.log(err)
+    );
   }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Tray } from 'src/app/models/tray.model';
+import { TrayService } from 'src/app/services/tray.service';
 
 @Component({
   selector: 'app-tray-cards-carousel',
@@ -7,55 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrayCardsCarouselComponent implements OnInit {
 
-  //Debe ser input
-  trays = [
-    {
-      "img_url" : "soy el link de imagen",
-      "tray_url" : "soy el url de tray"
-    },
-    {
-      "img_url" : "soy el link de imagen",
-      "tray_url" : "soy el url de tray"
-    },
-    {
-      "img_url" : "soy el link de imagen",
-      "tray_url" : "soy el url de tray"
-    },
-    {
-      "img_url" : "soy el link de imagen",
-      "tray_url" : "soy el url de tray"
-    },
-    {
-      "img_url" : "soy el link de imagen",
-      "tray_url" : "soy el url de tray"
-    },
-    {
-      "img_url" : "soy el link de imagen",
-      "tray_url" : "soy el url de tray"
-    },
-    {
-      "img_url" : "soy el link de imagen",
-      "tray_url" : "soy el url de tray"
-    },
-    {
-      "img_url" : "soy el link de imagen",
-      "tray_url" : "soy el url de tray"
-    }
-  ];
-
-
-  tray_example = {
-    "img_url" : "soy el link de imagen",
-    "tray_url" : "soy el url de tray"
-  }
+  @Input() carouselId!: string;
+  trays: Tray[] = [];
 
   
-  constructor() {
-
-
-  }
+  constructor(private trayService:TrayService) {}
 
   ngOnInit(): void {
+    this.getTrays();
   }
 
   getGroups(arr:any, numGroups:number) {
@@ -63,6 +24,13 @@ export class TrayCardsCarouselComponent implements OnInit {
     return new Array(Math.ceil(arr.length / numGroups))
       .fill('')
       .map((_, i) => arr.slice(i * perGroup, (i + 1) * perGroup));
+  }
+
+  getTrays(){
+    this.trayService.getTrays().subscribe(
+      res => this.trays=res,
+      err => console.log(err)
+    );
   }
   
 

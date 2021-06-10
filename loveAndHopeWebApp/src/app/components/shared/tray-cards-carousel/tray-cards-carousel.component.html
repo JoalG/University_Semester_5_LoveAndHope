@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators2" class="carousel slide ml-3" data-ride="carousel">
+<div id={{carouselId}} class="carousel slide ml-3" data-ride="carousel">
 
     <div class="carousel-inner">
         <div *ngFor="let group of getGroups(trays,3), index as i" [ngClass]="i==0?'carousel-item active':'carousel-item'">
@@ -14,14 +14,14 @@
     <div class="row mt-3 justify-content-center">
         <div class="col-6 col-md-3">
 
-            <a class="btn btn-primary mb-3 mr-1 w-100" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+            <a class="btn btn-primary mb-3 mr-1 w-100" href="#{{carouselId}}" role="button" data-slide="prev">
                 <i class="fa fa-2x fa-arrow-left"></i>
             </a>
 
         </div>
         <div class="col-6 col-md-3">
 
-            <a class="btn btn-primary mb-3 w-100 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+            <a class="btn btn-primary mb-3 w-100 " href="#{{carouselId}}" role="button" data-slide="next">
                 <i class="fa fa-2x fa-arrow-right"></i>
             </a>
 
