@@ -7,32 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  items = [{
-    order_number:123342,
-    for:"El pepe",
-    budget: 250000,
-    date: "15/12/2021"
-  },{
-    order_number:123342,
-    for:"El pepe",
-    budget: 250000,
-    date: "15/12/2021"
-  },{
-    order_number:123342,
-    for:"El pepe",
-    budget: 250000,
-    date: "15/12/2021"
-  },{
-    order_number:123342,
-    for:"El pepe",
-    budget: 250000,
-    date: "15/12/2021"
-  }
-];
+  items:any[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.getItems();
   }
+
+
+  getItems(){
+    this.items = JSON.parse(localStorage.getItem("shoppingCart")!);
+
+  }
+
+  deleteItem(id:number){
+    let shoppingCart:any[] = JSON.parse(localStorage.getItem("shoppingCart")!);
+    shoppingCart = shoppingCart.slice(0,id).concat(shoppingCart.slice(id+1));
+    console.log(shoppingCart);
+    localStorage.setItem("shoppingCart",JSON.stringify(shoppingCart));
+    
+    this.getItems();
+  }
+
 
 }
