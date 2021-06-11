@@ -20,7 +20,7 @@ export class UserService {
   }
 
   postUser(user:User){
-    return this.http.post(this.URL_API,user)
+    return this.http.post(this.URL_API,user);
   }
 
   signInUser(user:any) {
