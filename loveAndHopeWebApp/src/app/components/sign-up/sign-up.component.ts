@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import jwtDecode, { JwtPayload } from "jwt-decode";
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -13,7 +16,7 @@ export class SignUpComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, private fb: FormBuilder) { }
+  constructor(private userService: UserService, private fb: FormBuilder, private router: Router) { }
 
   signUpForm: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
@@ -26,7 +29,8 @@ export class SignUpComponent implements OnInit {
 
 
   ngOnInit(): void {
- 
+    const decoded = jwtDecode<JwtPayload>(localStorage.getItem('token')!); // Returns with the JwtPayload typ
+    console.log(decoded)
   }
 
 /*   getUsers(){
@@ -53,10 +57,12 @@ export class SignUpComponent implements OnInit {
     console.log(user);
 
     this.userService.postUser(user).subscribe(
-      res => console.log(res),
-      err => console.log(err)
+      (res:any) => {
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/user']);
+      },
+      err => console.log(err) 
     );
-
 
   }
 

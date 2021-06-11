@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+var crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+
 
 const UserSchema = mongoose.Schema({
     username: {
@@ -31,7 +34,23 @@ const UserSchema = mongoose.Schema({
     }
 });
 
+UserSchema.methods.validPassword = function(password) {
+    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
+    return this.hash === hash;
+};
 
+UserSchema.methods.generateJwt = function() {
+    var expiry = new Date();
+    expiry.setDate(expiry.getDate() + 7);
+  
+    return jwt.sign({
+      _id: this._id,
+      e_mail: this.e_mail,
+      name: this.name,
+      phone_number: this.phone_number,
+      exp: parseInt(expiry.getTime() / 1000),
+    }, "secretkey"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+};
 
 user = {
     "_id": "60aaefe9abe1393860f2d0cb",

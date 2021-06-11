@@ -7,8 +7,6 @@ const crypto = require('crypto');
 
 
 
-
-
 //GET 
 //E: 
 //S: Todos los users 
@@ -140,7 +138,9 @@ router.post('/', async(req, res) => {
                 } else {
                     saveUser = user.toObject();
                     delete saveUser.password;
-                    res.json(saveUser);
+
+                    const token = user.generateJwt();
+                    return res.status(200).json({token});
                 }
             }); //metodo de mongoose para guardar 
 
@@ -153,6 +153,20 @@ router.post('/', async(req, res) => {
     }
 
 
+});
+
+
+router.post('/signin', async (req, res) => {
+    
+    const { username, password } = req.body;
+
+    const user = await User.findOne({ username: req.body.username });
+    if (!user) return res.status(401).send('The User doen\' exists');
+    if (!user.validPassword(password)) return res.status(401).send('Wrong Password');
+
+        const token = user.generateJwt();
+
+    return res.status(200).json({token});
 });
 
 

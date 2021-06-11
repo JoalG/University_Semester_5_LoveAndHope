@@ -7,6 +7,7 @@
         <div>
             <button type="button" [routerLink]="['/shopping-cart']" class="btn"><i class=" text-turquoise-dark fas fa-3x fa-shopping-cart"></i></button>
             <button type="button" [routerLink]="['/user']" class="btn"><i class=" text-turquoise-dark fas fa-3x fa-user-circle"></i></button>
+            <button type="button" [routerLink]="['/home']" class="btn" *ngIf="isInSession()" (click)="logOut()"><i class=" text-turquoise-dark fas fa-3x fa-sign-out-alt"></i></button>
         </div>
     </div>
 </nav>

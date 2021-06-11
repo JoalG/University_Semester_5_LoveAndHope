@@ -7,6 +7,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { NewTrayComponent } from './components/new-tray/new-tray.component';
 import { ShoppingHistoryComponent } from './components/shopping-history/shopping-history.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
 
@@ -17,7 +18,11 @@ const routes: Routes = [
   {path:'shopping-cart', component:ShoppingCartComponent},
 
   {path:'new-tray', component:NewTrayComponent},
-  {path:'user', component:ShoppingHistoryComponent},
+  {
+    path:'user', 
+    component:ShoppingHistoryComponent,
+    canActivate: [AuthGuard]
+  },
 
   {path:'**',pathMatch:'full',redirectTo:'home'}
 

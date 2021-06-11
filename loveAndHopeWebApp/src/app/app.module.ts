@@ -18,6 +18,8 @@ import { ShoppingHistoryComponent } from './components/shopping-history/shopping
 import { TrayCardsCarouselComponent } from './components/shared/tray-cards-carousel/tray-cards-carousel.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
