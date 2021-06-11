@@ -85,7 +85,7 @@
                             <button type="button" class="btn btn-primary mx-3" (click)="nextStep();" *ngIf="currentStep < 2">
                                     <h5>Siguiente</h5> 
                             </button>
-                            <button type="button" class="btn btn-primary mx-3" (click)="nextStep(); saveOrderDetails()" *ngIf="currentStep === 2">
+                            <button type="button" [routerLink]="['/shopping-cart']" class="btn btn-primary mx-3" (click)="nextStep(); addToShoppingCart()" *ngIf="currentStep === 2">
                                     <h5>Agregar al carrito</h5> 
                             </button>
                         </div>

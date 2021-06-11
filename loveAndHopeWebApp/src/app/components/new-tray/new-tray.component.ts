@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form } from 'src/app/models/form.model';
+import { Order } from 'src/app/models/order.model';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -102,4 +104,49 @@ export class NewTrayComponent implements OnInit {
       err => console.log(err)
     );
   }
+
+  addToShoppingCart(){
+    let form: Form = {
+      receiver_name:this.receiverForm.value.receiver_name,
+      color:this.receiverForm.value.color,
+      age:this.receiverForm.value.age,
+      tv_show:this.receiverForm.value.tv_show,
+      sport:this.receiverForm.value.sport,
+      movie:this.receiverForm.value.movie,
+      song:this.receiverForm.value.song,
+      profession:this.receiverForm.value.profession
+    };
+
+    let order:Order = {
+      username: "JoalG",
+      selected_products: this. selectedSelected_Products,
+      address: this.orderForm.value.address,
+      date: this.orderForm.value.date,
+      phone_number: this.orderForm.value.phone_number,
+      price:  this.orderForm.value.price,
+      state:  'En proceso'
+    }
+
+
+
+    if (localStorage.getItem("shoppingCart") == null){
+      localStorage.setItem("shoppingCart",JSON.stringify([]));
+    }
+
+    let shoppingCart:any[] = JSON.parse(localStorage.getItem("shoppingCart")!);
+
+    shoppingCart.push({order: order,form: form});
+
+
+    localStorage.setItem("shoppingCart",JSON.stringify(shoppingCart));
+
+  }
+
+
 }
+
+
+
+
+
+

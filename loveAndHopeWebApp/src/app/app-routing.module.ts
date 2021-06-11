@@ -15,7 +15,6 @@ const routes: Routes = [
   {path:'info', component:InfoComponent},
   {path:'sign-up', component:SignUpComponent},
   {path:'shopping-cart', component:ShoppingCartComponent},
-
   {path:'new-tray', component:NewTrayComponent},
   {path:'user', component:ShoppingHistoryComponent},
 
