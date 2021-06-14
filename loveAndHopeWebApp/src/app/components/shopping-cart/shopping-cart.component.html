@@ -10,7 +10,7 @@
         <div class="col-12 px-5 col-lg-8">
             <div class="rounded-p bg-turquoise car-items">
 
-                <div *ngFor="let item of items" class="row p-5 m-0">
+                <div *ngFor="let item of items , index as i" class="row p-5 m-0">
                     <div class="col-1 pt-4 text-white">
                         <i class="fas fa-2x fa-dot-circle"></i>
                     </div>
@@ -24,7 +24,7 @@
                                 <h5>Orden</h5>
                             </div>
                             <div class="col-6">
-                                <h5>#673446735</h5>
+                                <h5>#{{i+1}}</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -32,7 +32,7 @@
                                 <h5>Para</h5>
                             </div>
                             <div class="col-6">
-                                <h5>Jose</h5>
+                                <h5>{{item.form.receiver_name}}</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -40,7 +40,7 @@
                                 <h5>Fecha</h5>
                             </div>
                             <div class="col-6">
-                                <h5>15/12/2001</h5>
+                                <h5>{{item.order.date | date : 'd/MM/yyyy'}}</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -48,13 +48,13 @@
                                 <h5>Presupuesto</h5>
                             </div>
                             <div class="col-6">
-                                <h5>₡ 50000</h5>
+                                <h5>{{item.order.price | currency : 'CRC':'symbol-narrow':'.0-0'}}</h5>
                             </div>
                         </div>
                         <div class="row my-3">
 
                             <div class="offset-6 col-6">
-                                <button type="submit" class="btn btn-primary">Elminar</button>
+                                <button (click)="deleteItem(i)" type="submit" class="btn btn-primary">Elminar</button>
                             </div>
 
                         </div>

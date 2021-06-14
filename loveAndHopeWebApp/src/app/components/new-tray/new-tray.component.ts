@@ -99,7 +99,7 @@ export class NewTrayComponent implements OnInit {
           date: ['', [Validators.required]],
           phone_number: ['', [Validators.required]],
           price: ['', [Validators.required]],
-          state: ['En proceso'],
+          state: ['Borrador'],
         });
       },
       err => console.log(err)
@@ -125,7 +125,7 @@ export class NewTrayComponent implements OnInit {
       date: this.orderForm.value.date,
       phone_number: this.orderForm.value.phone_number,
       price:  this.orderForm.value.price,
-      state:  'En proceso'
+      state:  'Borrador'
     }
 
     if (localStorage.getItem("shoppingCart") == null){
