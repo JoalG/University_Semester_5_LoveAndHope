@@ -18,18 +18,24 @@ export class SignUpComponent implements OnInit {
 
   constructor(private userService: UserService, private fb: FormBuilder, private router: Router) { }
 
-  signUpForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    confirmPassword: ['', [Validators.required]],
-    name: ['', [Validators.required]],
-    e_mail: ['', [Validators.required, Validators.email]],
-    phone_number: ['', [Validators.required]]
-  })
+  signUpForm!: FormGroup;
 
+  isFieldValid(field: string) {
+    if(this.signUpForm.get(field) != null){
+      return !this.signUpForm.get(field)!.valid && this.signUpForm.get(field)!.touched;
+    }
+    return false;
+  }
 
   ngOnInit(): void {
-
+    this.signUpForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      e_mail: ['', [Validators.required, Validators.email]],
+      phone_number: ['', [Validators.required]]
+    })
   }
 
 /*   getUsers(){
@@ -45,22 +51,28 @@ export class SignUpComponent implements OnInit {
 
   postUser(){
 
-    let user: User = {
-      username: this.signUpForm.value.username,
-      password :this.signUpForm.value.password,
-      name: this.signUpForm.value.name,
-      e_mail: this.signUpForm.value.e_mail,
-      phone_number: this.signUpForm.value.phone_number
-    };
+    if(this.signUpForm.valid){
+      let user: User = {
+        username: this.signUpForm.value.username,
+        password :this.signUpForm.value.password,
+        name: this.signUpForm.value.name,
+        e_mail: this.signUpForm.value.e_mail,
+        phone_number: this.signUpForm.value.phone_number
+      };
+  
+      this.userService.postUser(user).subscribe(
+        (res:any) => {
+          localStorage.setItem('token', res.token);
+        },
+        err => console.log(err) 
+      );
+    }
+    else{
+      Object.values(this.signUpForm.controls).forEach(control =>{
+        control.markAsTouched();
+      })
+    }
 
-    console.log(user);
-
-    this.userService.postUser(user).subscribe(
-      (res:any) => {
-        localStorage.setItem('token', res.token);
-      },
-      err => console.log(err) 
-    );
 
   }
 

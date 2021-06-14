@@ -16,10 +16,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.signInForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: [null, Validators.required],
+      password: [null, Validators.required]
     })
-  }
+    
+    console.log(this.signInForm);
+    console.log(this.username)
+ }
 
   get username() {
     return this.signInForm.get('username');
@@ -31,12 +34,28 @@ export class HomeComponent implements OnInit {
 
   signIn() {
 
-    this.userService.signInUser(this.signInForm.value).subscribe(
-      (res:any) => {
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['/user']);
-      },
-      err => console.log(err) 
-    );
+    if(this.signInForm.valid){
+      this.userService.signInUser(this.signInForm.value).subscribe(
+        (res:any) => {
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/user']);
+        },
+        err => console.log(err) 
+      );
+    }
+    else{
+      Object.values(this.signInForm.controls).forEach(control =>{
+        control.markAsTouched();
+      })
+    }
+
   }
+
+  isFieldValid(field: string) {
+    if(this.signInForm.get(field) != null){
+      return !this.signInForm.get(field)!.valid && this.signInForm.get(field)!.touched;
+    }
+    return false;
+  }
+
 }
