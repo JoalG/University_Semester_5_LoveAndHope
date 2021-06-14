@@ -4,6 +4,7 @@ import { Form } from 'src/app/models/form.model';
 import { Order } from 'src/app/models/order.model';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import jwtDecode, { JwtPayload } from "jwt-decode";
 
 @Component({
   selector: 'app-new-tray',
@@ -118,7 +119,7 @@ export class NewTrayComponent implements OnInit {
     };
 
     let order:Order = {
-      username: "JoalG",
+      username: this.getCurrentUsername(),
       selected_products: this. selectedSelected_Products,
       address: this.orderForm.value.address,
       date: this.orderForm.value.date,
@@ -126,8 +127,6 @@ export class NewTrayComponent implements OnInit {
       price:  this.orderForm.value.price,
       state:  'En proceso'
     }
-
-
 
     if (localStorage.getItem("shoppingCart") == null){
       localStorage.setItem("shoppingCart",JSON.stringify([]));
@@ -140,6 +139,17 @@ export class NewTrayComponent implements OnInit {
 
     localStorage.setItem("shoppingCart",JSON.stringify(shoppingCart));
 
+  }
+
+  getCurrentUsername(){
+    const token:any = localStorage.getItem('token');
+    if(token !== null){
+      const decoded:any = jwtDecode<JwtPayload>(token); // Returns with the JwtPayload typ
+      return decoded.username;
+    }
+    else{
+      return "user_x";
+    }
   }
 
 

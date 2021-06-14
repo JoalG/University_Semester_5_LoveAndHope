@@ -29,8 +29,7 @@ export class SignUpComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const decoded = jwtDecode<JwtPayload>(localStorage.getItem('token')!); // Returns with the JwtPayload typ
-    console.log(decoded)
+
   }
 
 /*   getUsers(){
@@ -59,7 +58,6 @@ export class SignUpComponent implements OnInit {
     this.userService.postUser(user).subscribe(
       (res:any) => {
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/user']);
       },
       err => console.log(err) 
     );

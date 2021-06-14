@@ -21,6 +21,14 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  get username() {
+    return this.signInForm.get('username');
+  }
+
+  get password(){
+    return this.signInForm.get('password');
+  }
+
   signIn() {
 
     this.userService.signInUser(this.signInForm.value).subscribe(
