@@ -6,6 +6,7 @@ import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import jwtDecode, { JwtPayload } from "jwt-decode";
 import { CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-tray',
@@ -59,7 +60,7 @@ export class NewTrayComponent implements OnInit {
   }
   
 
-  constructor(private fb: FormBuilder, private productService:ProductService, private currencyPipe: CurrencyPipe) { }
+  constructor(private fb: FormBuilder, private productService:ProductService, private currencyPipe: CurrencyPipe, private router: Router) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -163,6 +164,8 @@ export class NewTrayComponent implements OnInit {
       shoppingCart.push({order: order,form: form});
   
       localStorage.setItem("shoppingCart",JSON.stringify(shoppingCart));
+
+      this.router.navigate(['/shopping-cart']);
     }
     else{
       Object.values(this.orderForm.controls).forEach(control =>{

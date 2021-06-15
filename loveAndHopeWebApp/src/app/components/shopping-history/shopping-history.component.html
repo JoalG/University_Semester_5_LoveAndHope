@@ -49,7 +49,7 @@
                                 <h5>Orden</h5>
                             </div>
                             <div class="col-6">
-                                <h5>#{{i+1}}</h5>
+                                <h5>#{{getID(item.order._id)}}</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -65,7 +65,7 @@
                                 <h5>Fecha</h5>
                             </div>
                             <div class="col-6">
-                                <h5>{{item.order.date | date : 'd/MM/yyyy'}}</h5>
+                                <h5>{{item.order.date | date : 'dd/MM/yyyy'}}</h5>
                             </div>
                         </div>
                         <div class="row">
