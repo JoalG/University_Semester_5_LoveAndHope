@@ -25,8 +25,6 @@ export class ShoppingHistoryComponent implements OnInit {
   ngOnInit(): void {
     this.setCurrentUserInfo();
     this.getItems();
-
-    
   }
 
   setCurrentUserInfo(){
@@ -70,6 +68,12 @@ export class ShoppingHistoryComponent implements OnInit {
     else{
       return "user_x";
     }
+  }
+
+  getID(id:String){
+    let res = id.match(/\d/g);
+    let res2 = res?.join("");
+    return res2;
   }
 
 }
