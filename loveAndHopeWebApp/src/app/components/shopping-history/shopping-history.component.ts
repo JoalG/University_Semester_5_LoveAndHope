@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import jwtDecode, { JwtPayload } from "jwt-decode";
+import { FormService } from 'src/app/services/form.service';
+import { OrderService } from 'src/app/services/order.service';
 
 
 @Component({
@@ -9,27 +11,7 @@ import jwtDecode, { JwtPayload } from "jwt-decode";
 })
 export class ShoppingHistoryComponent implements OnInit {
 
-  items = [{
-    order_number:123342,
-    for:"El pepe",
-    budget: 250000,
-    date: "15/12/2021"
-  },{
-    order_number:123342,
-    for:"El pepe",
-    budget: 250000,
-    date: "15/12/2021"
-  },{
-    order_number:123342,
-    for:"El pepe",
-    budget: 250000,
-    date: "15/12/2021"
-  },{
-    order_number:123342,
-    for:"El pepe",
-    budget: 250000,
-    date: "15/12/2021"
-  }];
+  items:any[] = [];
 
 
   userInfo = {
@@ -38,10 +20,13 @@ export class ShoppingHistoryComponent implements OnInit {
     phone_number: ""
   }
 
-  constructor() { }
+  constructor(private formService: FormService, private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.setCurrentUserInfo();
+    this.getItems();
+
+    
   }
 
   setCurrentUserInfo(){
@@ -54,5 +39,37 @@ export class ShoppingHistoryComponent implements OnInit {
     }
   }
 
+
+  getItems(){
+    this.orderService.getOrdersByUser(this.getCurrentUsername()).subscribe(
+      
+      res => {
+        let orders:any[] = res;
+
+
+        orders.forEach(order => {
+          this.formService.getForm(order.formId).subscribe(
+            res => {
+              this.items.push({order:order,form:res});
+            },
+              err => console.log(err)
+          );
+        });
+
+      },
+      err => console.log(err)
+    );
+  }
+
+  getCurrentUsername():String{
+    const token:any = localStorage.getItem('token');
+    if(token !== null){
+      const decoded:any = jwtDecode<JwtPayload>(token); // Returns with the JwtPayload typ
+      return decoded.username;
+    }
+    else{
+      return "user_x";
+    }
+  }
 
 }
