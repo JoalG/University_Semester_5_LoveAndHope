@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AuthGuard } from './auth.guard';
     HttpClientModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    CurrencyPipe
   ],
   bootstrap: [AppComponent]
 })

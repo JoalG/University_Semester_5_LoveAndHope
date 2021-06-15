@@ -48,10 +48,13 @@ export class SignUpComponent implements OnInit {
       );
   } */
 
+  arePasswordsNotSame(){
+    return (this.signUpForm.get('password')!.value !== this.signUpForm.get('confirmPassword')!.value) && (this.signUpForm.get('password')?.touched && this.signUpForm.get('confirmPassword')?.touched);
+  }
 
   postUser(){
 
-    if(this.signUpForm.valid){
+    if(this.signUpForm.valid && (this.signUpForm.get('password')!.value === this.signUpForm.get('confirmPassword')!.value)){
       let user: User = {
         username: this.signUpForm.value.username,
         password :this.signUpForm.value.password,

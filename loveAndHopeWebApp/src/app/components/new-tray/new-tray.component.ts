@@ -5,6 +5,7 @@ import { Order } from 'src/app/models/order.model';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import jwtDecode, { JwtPayload } from "jwt-decode";
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-tray',
@@ -58,7 +59,7 @@ export class NewTrayComponent implements OnInit {
   }
   
 
-  constructor(private fb: FormBuilder, private productService:ProductService) { }
+  constructor(private fb: FormBuilder, private productService:ProductService, private currencyPipe: CurrencyPipe) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -183,7 +184,19 @@ export class NewTrayComponent implements OnInit {
     }
   }
 
+  transformAmount(element: any){
+    element.target.value = this.currencyPipe.transform(parseFloat(this.price!.value.replace('₡','').replace(",","")), '₡');
+  }
 
+
+  get price() {
+    return this.orderForm.get('price');
+  }
+
+  getActualNumber(num: String){
+
+    return num.replace('₡','').replace(",","");
+  }
 }
 
 
