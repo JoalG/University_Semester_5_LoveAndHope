@@ -26,9 +26,9 @@ router.get('/', async(req, res) => {
 //GET de un user en especifico
 //E: id
 //S: Form sin password
-router.get('/_id', async(req, res) => {
+router.get('/:username', async(req, res) => {
     try {
-        const order = await Order.findOne({ _id: req.params.id });
+        const order = await Order.find({ username: req.params.username });
         console.log(order);
         res.json(order);
     } catch (error) {

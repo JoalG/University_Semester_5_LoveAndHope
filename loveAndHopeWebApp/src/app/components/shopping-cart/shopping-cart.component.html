@@ -74,10 +74,10 @@
                 <h1>Precio total</h1>
             </div>
             <div class="row text-center justify-content-center">
-                <h2>50000</h2>
+                <h2>{{totalPrice | currency : 'CRC':'symbol-narrow':'.0-0'}}</h2>
             </div>
             <div class="row my-5 text-center justify-content-center">
-                <button type="submit" class="btn btn-secondary"> <h3>Realizar compra</h3> </button>
+                <button (click)="placeOrder()" class="btn btn-secondary"> <h3>Realizar compra</h3> </button>
             </div>
 
         </div>

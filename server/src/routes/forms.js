@@ -26,9 +26,9 @@ router.get('/', async(req, res) => {
 //GET de un user en especifico
 //E: id
 //S: Form sin password
-router.get('/_id', async(req, res) => {
+router.get('/:_id', async(req, res) => {
     try {
-        const form = await User.findOne({ _id: req.params.id });
+        const form = await Form.findOne({ _id: req.params._id });
         console.log(form);
         res.json(form);
     } catch (error) {
