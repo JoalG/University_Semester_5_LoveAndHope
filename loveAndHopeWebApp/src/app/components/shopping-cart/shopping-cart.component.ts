@@ -3,6 +3,8 @@ import { FormService } from 'src/app/services/form.service';
 import { Form } from 'src/app/models/form.model';
 import { Order } from 'src/app/models/order.model';
 import { OrderService } from 'src/app/services/order.service';
+import { ToastrService } from "ngx-toastr";
+
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,7 +17,7 @@ export class ShoppingCartComponent implements OnInit {
   items:any[] = [];
   totalPrice:number = 0;
 
-  constructor(private formService: FormService,private orderService: OrderService) { }
+  constructor(private formService: FormService,private orderService: OrderService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.getItems();
@@ -38,6 +40,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   placeOrder(){
+    this.toastr.success("Compra finalizada")
     this.items.forEach(
       item => {
         let form:Form = item.form;
