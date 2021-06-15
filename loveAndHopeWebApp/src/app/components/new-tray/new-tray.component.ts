@@ -17,7 +17,7 @@ export class NewTrayComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private productService:ProductService, private currencyPipe: CurrencyPipe, private router: Router) {
     try {
-      console.log(this.router.getCurrentNavigation()!.extras!.state!.tray); // should log out 'bar'
+      this.trayProducts = this.router.getCurrentNavigation()!.extras!.state!.tray.products;
 
     } catch (error) {
       console.log(error)
@@ -32,6 +32,7 @@ export class NewTrayComponent implements OnInit {
   private maxSteps = 2;
   public productsNumOfColumns = 2;
   public selectedSelected_Products: String[] = [];
+  private trayProducts: String[] = []; 
 
   @Input() products: Product[] = [];
   orderForm!: FormGroup;
@@ -124,7 +125,7 @@ export class NewTrayComponent implements OnInit {
   getProducts(){
     this.productService.getProducts().subscribe(
       res => {
-        this.products=res;
+        this.products = res;
         this.orderForm = this.fb.group({
           selected_products: this.addSelected_ProductsControls(),
           address: ['', [Validators.required]],
@@ -133,9 +134,22 @@ export class NewTrayComponent implements OnInit {
           price: ['', [Validators.required]],
           state: ['Borrador'],
         });
+
+        this.checkTrayProducts();
       },
       err => console.log(err)
     );
+  }
+
+  checkTrayProducts(){
+    if(this.trayProducts.length > 0){
+      this.products.forEach((product, i) => {
+        if(this.trayProducts.includes(product.code)){
+          this.selected_productsArray.controls[i].setValue(true);
+        }
+      });
+    }
+
   }
 
   addToShoppingCart(){

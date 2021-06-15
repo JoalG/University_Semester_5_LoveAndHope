@@ -1,8 +1,8 @@
 .btn-primary {
-    background-color: white;
-    color: #006B7A;
+    background-color: #006B7A;
+    color: white;
     font-weight: bold;
-    border-color: white;
+    border-color: #006B7A;
 }
 
 .btn-primary:hover,
