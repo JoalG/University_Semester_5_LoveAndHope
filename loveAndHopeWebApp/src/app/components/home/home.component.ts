@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import jwtDecode, { JwtPayload } from 'jwt-decode';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,7 +12,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private fb: FormBuilder) { }
+  constructor(
+    private userService: UserService, 
+    private router: Router, 
+    private fb: FormBuilder, 
+    private toastr: ToastrService) { }
 
   signInForm!: FormGroup;
 
@@ -38,9 +44,12 @@ export class HomeComponent implements OnInit {
       this.userService.signInUser(this.signInForm.value).subscribe(
         (res:any) => {
           localStorage.setItem('token', res.token);
-          this.router.navigate(['/user']);
+          this.toastr.success("Bienvenido","Sesión iniciada con éxito")
         },
-        err => console.log(err) 
+        err => {
+          console.log(err)
+          this.toastr.error("Datos Incorrectos","No se pudo inciar sesión")
+        } 
       );
     }
     else{
@@ -56,6 +65,19 @@ export class HomeComponent implements OnInit {
       return !this.signInForm.get(field)!.valid && this.signInForm.get(field)!.touched;
     }
     return false;
+  }
+
+  isInSession() {
+    return this.userService.getToken() !== null;
+  }
+
+  getCurrentUserName(){
+    const token:any = localStorage.getItem('token');
+    if(token !== null){
+      const decoded:any = jwtDecode<JwtPayload>(token); // Returns with the JwtPayload typ
+      return decoded.name;
+    }
+    return "";
   }
 
 }
