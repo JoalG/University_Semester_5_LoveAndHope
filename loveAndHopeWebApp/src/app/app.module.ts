@@ -22,6 +22,7 @@ import { RouterLink } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    CurrencyPipe
   ],
   bootstrap: [AppComponent]
 })

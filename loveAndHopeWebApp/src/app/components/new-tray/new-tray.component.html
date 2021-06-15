@@ -28,28 +28,52 @@
                             <form [formGroup]="receiverForm" *ngIf="currentStep === 0">
                                 <div class="form-group px-5 customOverflow">
                                     <label for="receiver_name" class="mt-3"><h4>Nombre</h4></label>
-                                    <input id="receiver_name" type="text" class="form-control" formControlName="receiver_name">
+                                    <input id="receiver_name" type="text" class="form-control" formControlName="receiver_name" [ngClass]="{'is-invalid': isReceiverFieldValid('receiver_name')}">
+                                    <div class="text-left" *ngIf="isReceiverFieldValid('receiver_name')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
 
                                     <label for="color" class="mt-3"><h4>Colores favoritos</h4></label>
-                                    <input id="color" type="text" class="form-control" formControlName="color">
-
+                                    <input id="color" type="text" class="form-control" formControlName="color" [ngClass]="{'is-invalid': isReceiverFieldValid('color')}">
+                                    <div class="text-left" *ngIf="isReceiverFieldValid('color')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
+                                    
                                     <label for="age" class="mt-3"><h4>Edad</h4></label>
-                                    <input id="age" type="number" class="form-control" formControlName="age">
+                                    <input id="age" type="number" class="form-control" formControlName="age" [ngClass]="{'is-invalid': isReceiverFieldValid('age')}">
+                                    <div class="text-left" *ngIf="isReceiverFieldValid('age')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
 
                                     <label for="tv_show" class="mt-3"><h4>Series favoritas</h4></label>
-                                    <input id="tv_show" type="text" class="form-control" formControlName="tv_show">
+                                    <input id="tv_show" type="text" class="form-control" formControlName="tv_show" [ngClass]="{'is-invalid': isReceiverFieldValid('tv_show')}">
+                                    <div class="text-left" *ngIf="isReceiverFieldValid('tv_show')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
 
                                     <label for="sport" class="mt-3"><h4>Deportes favoritos</h4></label>
-                                    <input id="sport" type="text" class="form-control" formControlName="sport">
+                                    <input id="sport" type="text" class="form-control" formControlName="sport" [ngClass]="{'is-invalid': isReceiverFieldValid('sport')}">
+                                    <div class="text-left" *ngIf="isReceiverFieldValid('sport')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
 
                                     <label for="movie" class="mt-3"><h4>Películas favoritas</h4></label>
-                                    <input id="movie" type="text" class="form-control" formControlName="movie">
+                                    <input id="movie" type="text" class="form-control" formControlName="movie" [ngClass]="{'is-invalid': isReceiverFieldValid('movie')}">
+                                    <div class="text-left" *ngIf="isReceiverFieldValid('movie')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
 
                                     <label for="song" class="mt-3"><h4>Canciones favoritas</h4></label>
-                                    <input id="song" type="text" class="form-control" formControlName="song">
+                                    <input id="song" type="text" class="form-control" formControlName="song" [ngClass]="{'is-invalid': isReceiverFieldValid('song')}">
+                                    <div class="text-left" *ngIf="isReceiverFieldValid('song')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
 
                                     <label for="profession" class="mt-3"><h4>Profesión</h4></label>
-                                    <input id="profession" type="text" class="form-control" formControlName="profession">
+                                    <input id="profession" type="text" class="form-control" formControlName="profession" [ngClass]="{'is-invalid': isReceiverFieldValid('profession')}">
+                                    <div class="text-left" *ngIf="isReceiverFieldValid('profession')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
                                 </div>
                             </form>
                             <form [formGroup]="orderForm" *ngIf="currentStep !== 0">
@@ -65,16 +89,33 @@
                                 </div>
                                 <div class="form-group px-5" *ngIf="currentStep === 2">
                                     <label for="address" class="mt-3"><h4>Dirección de entrega</h4></label>
-                                    <input id="address" type="text" class="form-control" formControlName="address">
+                                    <input id="address" type="text" class="form-control" formControlName="address" [ngClass]="{'is-invalid': isOrderFieldValid('address')}">
+                                    <div class="text-left" *ngIf="isOrderFieldValid('address')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
 
                                     <label for="date" class="mt-3"><h4>Fecha de entrega</h4></label>
-                                    <input id="date" type="date" class="form-control" formControlName="date">
+                                    <input id="date" type="date" class="form-control" formControlName="date" [ngClass]="{'is-invalid': isOrderFieldValid('date')}">
+                                    <div class="text-left" *ngIf="isOrderFieldValid('date')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
 
                                     <label for="phone_number" class="mt-3"><h4>Número de teléfono</h4></label>
-                                    <input id="phone_number" type="tel" class="form-control" formControlName="phone_number">
+                                    <input id="phone_number" type="tel" class="form-control" formControlName="phone_number" [ngClass]="{'is-invalid': isOrderFieldValid('phone_number')}">
+                                    <div class="text-left" *ngIf="isOrderFieldValid('phone_number')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
 
                                     <label for="price" class="mt-3"><h4>Presupuesto propuesto</h4></label>
-                                    <input id="price" type="number" class="form-control" formControlName="price">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <div class="input-group-text">₡</div>
+                                        </div>
+                                        <input id="price" type="number" class="form-control" formControlName="price" [ngClass]="{'is-invalid': isOrderFieldValid('price')}">
+                                    </div>
+                                    <div class="text-left" *ngIf="isOrderFieldValid('price')">
+                                        <span class="badge badge-pill badge-danger">Campo requerido</span>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -82,10 +123,13 @@
                             <button type="button" class="btn btn-primary mx-3" (click)="previousStep()" *ngIf="currentStep > 0"> 
                                     <h5>Anterior</h5> 
                             </button>
-                            <button type="button" class="btn btn-primary mx-3" (click)="nextStep();" *ngIf="currentStep < 2">
+                            <button type="button" class="btn btn-primary mx-3" (click)="goToNextForm();" *ngIf="currentStep === 0">
+                                <h5>Siguiente</h5> 
+                            </button>
+                            <button type="button" class="btn btn-primary mx-3" (click)="nextStep();" *ngIf="currentStep === 1">
                                     <h5>Siguiente</h5> 
                             </button>
-                            <button type="button" [routerLink]="['/shopping-cart']" class="btn btn-primary mx-3" (click)="nextStep(); addToShoppingCart()" *ngIf="currentStep === 2">
+                            <button type="submit" class="btn btn-primary mx-3" (click)="addToShoppingCart()" *ngIf="currentStep === 2">
                                     <h5>Agregar al carrito</h5> 
                             </button>
                         </div>
@@ -95,3 +139,5 @@
         </div>
     </div>
 </div>
+
+{{this.orderForm.value | json }}

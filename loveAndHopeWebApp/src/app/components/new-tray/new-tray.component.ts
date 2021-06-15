@@ -5,6 +5,7 @@ import { Order } from 'src/app/models/order.model';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import jwtDecode, { JwtPayload } from "jwt-decode";
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-tray',
@@ -32,9 +33,33 @@ export class NewTrayComponent implements OnInit {
       profession: ['', [Validators.required]],
   });
 
+  isReceiverFieldValid(field: string) {
+    if(this.receiverForm.get(field) != null){
+      return !this.receiverForm.get(field)!.valid && this.receiverForm.get(field)!.touched;
+    }
+    return false;
+  }
+
+  isOrderFieldValid(field: string) {
+    if(this.orderForm.get(field) != null){
+      return !this.orderForm.get(field)!.valid && this.orderForm.get(field)!.touched;
+    }
+    return false;
+  }
+
+  goToNextForm(){
+    if(this.receiverForm.valid){
+      this.nextStep();
+    }
+    else{
+      Object.values(this.receiverForm.controls).forEach(control =>{
+        control.markAsTouched();
+      })
+    }
+  }
   
 
-  constructor(private fb: FormBuilder, private productService:ProductService) { }
+  constructor(private fb: FormBuilder, private productService:ProductService, private currencyPipe: CurrencyPipe) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -107,37 +132,44 @@ export class NewTrayComponent implements OnInit {
   }
 
   addToShoppingCart(){
-    let form: Form = {
-      receiver_name:this.receiverForm.value.receiver_name,
-      color:this.receiverForm.value.color,
-      age:this.receiverForm.value.age,
-      tv_show:this.receiverForm.value.tv_show,
-      sport:this.receiverForm.value.sport,
-      movie:this.receiverForm.value.movie,
-      song:this.receiverForm.value.song,
-      profession:this.receiverForm.value.profession
-    };
-
-    let order:Order = {
-      username: this.getCurrentUsername(),
-      selected_products: this. selectedSelected_Products,
-      address: this.orderForm.value.address,
-      date: this.orderForm.value.date,
-      phone_number: this.orderForm.value.phone_number,
-      price:  this.orderForm.value.price,
-      state:  'Borrador'
+    if(this.orderForm.valid){
+      let form: Form = {
+        receiver_name:this.receiverForm.value.receiver_name,
+        color:this.receiverForm.value.color,
+        age:this.receiverForm.value.age,
+        tv_show:this.receiverForm.value.tv_show,
+        sport:this.receiverForm.value.sport,
+        movie:this.receiverForm.value.movie,
+        song:this.receiverForm.value.song,
+        profession:this.receiverForm.value.profession
+      };
+  
+      let order:Order = {
+        username: this.getCurrentUsername(),
+        selected_products: this. selectedSelected_Products,
+        address: this.orderForm.value.address,
+        date: this.orderForm.value.date,
+        phone_number: this.orderForm.value.phone_number,
+        price:  this.orderForm.value.price,
+        state:  'Borrador'
+      }
+  
+      if (localStorage.getItem("shoppingCart") == null){
+        localStorage.setItem("shoppingCart",JSON.stringify([]));
+      }
+  
+      let shoppingCart:any[] = JSON.parse(localStorage.getItem("shoppingCart")!);
+  
+      shoppingCart.push({order: order,form: form});
+  
+      localStorage.setItem("shoppingCart",JSON.stringify(shoppingCart));
+    }
+    else{
+      Object.values(this.orderForm.controls).forEach(control =>{
+        control.markAsTouched();
+      })
     }
 
-    if (localStorage.getItem("shoppingCart") == null){
-      localStorage.setItem("shoppingCart",JSON.stringify([]));
-    }
-
-    let shoppingCart:any[] = JSON.parse(localStorage.getItem("shoppingCart")!);
-
-    shoppingCart.push({order: order,form: form});
-
-
-    localStorage.setItem("shoppingCart",JSON.stringify(shoppingCart));
 
   }
 
@@ -152,7 +184,19 @@ export class NewTrayComponent implements OnInit {
     }
   }
 
+  transformAmount(element: any){
+    element.target.value = this.currencyPipe.transform(parseFloat(this.price!.value.replace('₡','').replace(",","")), '₡');
+  }
 
+
+  get price() {
+    return this.orderForm.get('price');
+  }
+
+  getActualNumber(num: String){
+
+    return num.replace('₡','').replace(",","");
+  }
 }
 
 
