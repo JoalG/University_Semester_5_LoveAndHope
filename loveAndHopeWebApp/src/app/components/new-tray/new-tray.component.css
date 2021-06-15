@@ -19,6 +19,7 @@ ul {
     height: 175px;
     margin: auto;
     border-radius: 20px;
+    background-color: whitesmoke;
   }
   
   label:before {

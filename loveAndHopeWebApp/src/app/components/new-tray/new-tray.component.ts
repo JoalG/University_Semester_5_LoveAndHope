@@ -15,6 +15,19 @@ import { Router } from '@angular/router';
 })
 export class NewTrayComponent implements OnInit {
 
+  constructor(private fb: FormBuilder, private productService:ProductService, private currencyPipe: CurrencyPipe, private router: Router) {
+    try {
+      console.log(this.router.getCurrentNavigation()!.extras!.state!.tray); // should log out 'bar'
+
+    } catch (error) {
+      console.log(error)
+    } 
+  }
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
   public currentStep = 0;
   private maxSteps = 2;
   public productsNumOfColumns = 2;
@@ -59,13 +72,6 @@ export class NewTrayComponent implements OnInit {
     }
   }
   
-
-  constructor(private fb: FormBuilder, private productService:ProductService, private currencyPipe: CurrencyPipe, private router: Router) { }
-
-  ngOnInit(): void {
-    this.getProducts();
-  }
-
   addSelected_ProductsControls() {
     const arr = this.products.map(element  =>{
       return this.fb.control(false);

@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
       this.userService.signInUser(this.signInForm.value).subscribe(
         (res:any) => {
           localStorage.setItem('token', res.token);
+          localStorage.setItem("shoppingCart",JSON.stringify([])); // clean shopping cart
           this.toastr.success("Bienvenido","Sesión iniciada con éxito")
         },
         err => {

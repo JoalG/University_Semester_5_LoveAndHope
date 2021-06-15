@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import jwtDecode, { JwtPayload } from "jwt-decode";
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -16,7 +17,11 @@ export class SignUpComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private userService: UserService, 
+    private fb: FormBuilder, 
+    private router: Router,
+    private toastr: ToastrService) { }
 
   signUpForm!: FormGroup;
 
@@ -66,8 +71,14 @@ export class SignUpComponent implements OnInit {
       this.userService.postUser(user).subscribe(
         (res:any) => {
           localStorage.setItem('token', res.token);
+          localStorage.setItem("shoppingCart",JSON.stringify([])); // clean shopping cart
+          this.toastr.success("Bienvenido","Usuario creado con éxito")
+          this.router.navigate(['/home']);
         },
-        err => console.log(err) 
+        err => {
+          console.log(err)
+          this.toastr.error("Nombre de usuario no disponible","No se pudo crear el usuario")
+        }   
       );
     }
     else{

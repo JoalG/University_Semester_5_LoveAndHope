@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   
   logOut() {
     this.userService.logout();
+    localStorage.setItem("shoppingCart",JSON.stringify([])); // clean shopping cart
     this.toastr.info("Gracias","Sesión finalizada")
   }
 

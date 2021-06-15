@@ -84,6 +84,7 @@
                                                 <input type="checkbox" (change)="getSelectedSelected_Products()" [formControl]="control" id="myCheckbox{{(i*productsNumOfColumns)+j}}" />
                                                 <label for="myCheckbox{{(i*productsNumOfColumns)+j}}"><img src="{{products[(i*productsNumOfColumns)+j].img}}" /></label>
                                             </div>
+                                            <div class="row justify-content-center mt-1"><h5>{{products[(i*productsNumOfColumns)+j].name}}</h5></div>
                                         </div>
                                     </div>
                                 </div>
@@ -139,5 +140,3 @@
         </div>
     </div>
 </div>
-
-{{this.orderForm.value | json }}

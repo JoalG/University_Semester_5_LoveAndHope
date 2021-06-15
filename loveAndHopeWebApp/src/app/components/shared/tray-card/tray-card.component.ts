@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tray-card',
@@ -9,9 +10,12 @@ export class TrayCardComponent implements OnInit {
 
   @Input() tray : any = {};
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  goToNewTray(){
+    this.router.navigate(['/new-tray'], {state: {tray: this.tray}});
+  }
 }
